@@ -71,12 +71,13 @@ class generator(mp_module.MPModule):
                     flags.append(name)
             self.console.set_status(
                 'Generator',
-                'Generator: RPM:%u current:%u volts:%f flags:%s runtime:%u maint:%d' %
+                'Generator: RPM:%u current:%u volts:%0.2f temp:%u flags:%s runtime:%u:%02u maint:%d' %
                 (m.generator_speed,
                  m.load_current,
                  m.bus_voltage,
+                 m.generator_temperature,
                  ",".join(flags),
-                 m.runtime,
+                 int(m.runtime)/60, int(m.runtime)%60,
                  m.time_until_maintenance,
                  ),
                 row=self.console_row)
